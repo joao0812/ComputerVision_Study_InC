@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="C:\Users\joaoe\Desktop\Cursos\YouTube\VisaoComputacional\C++\ShowImage\src\show_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\joaoe\Desktop\Cursos\YouTube\VisaoComputacional\C++\ShowImage\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{BF7152B6-F9D1-31C9-A6FA-8067C8B9E196}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

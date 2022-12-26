@@ -1,0 +1,9 @@
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/Experimental.dir
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/Nightly.dir
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/Continuous.dir
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/NightlyMemoryCheck.dir
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/showimage.dir
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/PACKAGE.dir
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/RUN_TESTS.dir
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/ALL_BUILD.dir
+C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/CMakeFiles/ZERO_CHECK.dir

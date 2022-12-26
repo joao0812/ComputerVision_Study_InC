@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\joaoe\Desktop\Cursos\YouTube\VisaoComputacional\C++\ShowImage\build\CMakeFiles\bdc0d34d47f78b9385e43011b6e60343\NightlyMemoryCheck.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+    <CustomBuild Include="C:\Users\joaoe\Desktop\Cursos\YouTube\VisaoComputacional\C++\ShowImage\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="C:\Users\joaoe\Desktop\Cursos\YouTube\VisaoComputacional\C++\ShowImage\build\CMakeFiles\NightlyMemoryCheck" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{93C90117-B95E-3F10-89C5-A56BDB360B61}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

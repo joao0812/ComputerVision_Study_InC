@@ -1,0 +1,10 @@
+^C:\USERS\JOAOE\DESKTOP\CURSOS\YOUTUBE\VISAOCOMPUTACIONAL\C++\SHOWIMAGE\BUILD\CMAKEFILES\BDC0D34D47F78B9385E43011B6E60343\GENERATE.STAMP.RULE
+setlocal
+"C:\Program Files\CMake\bin\cmake.exe" -SC:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage -BC:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build --check-stamp-list CMakeFiles/generate.stamp.list --vs-solution-file C:/Users/joaoe/Desktop/Cursos/YouTube/VisaoComputacional/C++/ShowImage/build/showimage.sln
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal & call :cmErrorLevel %errorlevel% & goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd
