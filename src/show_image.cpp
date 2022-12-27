@@ -73,10 +73,10 @@ void drawGeometricFormsText(Mat image_color)
     waitKey(0);
 }
 
-void cropResizeImage(Mat image_color) 
+void cropResizeImage(Mat image_color)
 {
     // Cortando a imagem pela técnica de Slicing, fazendo um crop
-    Mat crop = image_color(Range(100,300),Range(200,400)); // cropped = img[start_row:end_row, start_col:end_col]
+    Mat crop = image_color(Range(100, 300), Range(200, 400)); // cropped = img[start_row:end_row, start_col:end_col]
     namedWindow("Crop", WINDOW_AUTOSIZE);
     imshow("Crop", crop);
 
@@ -84,8 +84,8 @@ void cropResizeImage(Mat image_color)
     Mat resized_up;
     Mat resized_down;
 
-    resize(image_color, resized_up, Size(800,500), INTER_LINEAR);
-    resize(image_color, resized_down, Size(400,180), INTER_LINEAR);
+    resize(image_color, resized_up, Size(800, 500), INTER_LINEAR); // INTER_LINEAR é uma especificação do cálculo matemático para demimensionar a imagem, existem outras propriedades
+    resize(image_color, resized_down, Size(400, 180), INTER_LINEAR);
 
     // Criando a janela e exibindo a imagem gerada
     namedWindow("Display Color City", WINDOW_AUTOSIZE);
@@ -93,6 +93,18 @@ void cropResizeImage(Mat image_color)
     imshow("Display Color City Up", resized_up);
     imshow("Display Color City Down", resized_down);
     waitKey(0); // Espera apertar em qualquer tecla para fechar a imagem
+}
+
+void flipImage(Mat image_color)
+{
+    Point2f center((image_color.cols - 1) / 2.0, (image_color.rows - 1) / 2.0);
+    Mat image_color_rotate;
+    flip(image_color, image_color_rotate, -1); // 0 - Flip Vertical || 1 - Flip Horizontal || -1 - Flip Horizontal e Vertical
+
+    namedWindow("Display Color City ", WINDOW_AUTOSIZE);
+    imshow("Display Color City", image_color);
+    imshow("Display Color City Rotate", image_color_rotate);
+    waitKey(0);
 }
 
 int main(int, char **)
@@ -120,7 +132,9 @@ int main(int, char **)
 
     // drawGeometricFormsText(image_color);
 
-    cropResizeImage(image_color);
+    // cropResizeImage(image_color);
+
+    flipImage(image_color);
 
     return 0;
 }
