@@ -97,13 +97,27 @@ void cropResizeImage(Mat image_color)
 
 void flipImage(Mat image_color)
 {
-    Point2f center((image_color.cols - 1) / 2.0, (image_color.rows - 1) / 2.0);
     Mat image_color_rotate;
     flip(image_color, image_color_rotate, -1); // 0 - Flip Vertical || 1 - Flip Horizontal || -1 - Flip Horizontal e Vertical
 
     namedWindow("Display Color City ", WINDOW_AUTOSIZE);
     imshow("Display Color City", image_color);
     imshow("Display Color City Rotate", image_color_rotate);
+    waitKey(0);
+}
+
+void rotateImage(Mat image_color)
+{
+    Point2f center((image_color.cols - 1) / 2.0, (image_color.rows - 1) / 2.0);
+    // usando getRotationMatrix2D() para se obter a matriz rotação
+    Mat matriz_rotate = getRotationMatrix2D(center, 45, 1.0);
+
+    Mat image_color_rotate;
+    // Rodatacionando a imagem usando a função warpAffine()
+    warpAffine(image_color, image_color_rotate, matriz_rotate, image_color.size());
+
+    namedWindow("Display Color City ", WINDOW_AUTOSIZE);
+    imshow("Display Color City", image_color_rotate);
     waitKey(0);
 }
 
@@ -134,7 +148,9 @@ int main(int, char **)
 
     // cropResizeImage(image_color);
 
-    flipImage(image_color);
+    // flipImage(image_color);
+
+    rotateImage(image_color);
 
     return 0;
 }
