@@ -121,6 +121,45 @@ void rotateImage(Mat image_color)
     waitKey(0);
 }
 
+void makeMask(Mat image_color)
+{
+    int X_image = image_color.rows / 2;
+    int Y_image = image_color.cols / 2;
+    Point center(Y_image, X_image);
+
+    Mat mascara = Mat::zeros(Size(image_color.cols, image_color.rows), CV_8UC1);
+    
+    // mascara(Range(0, X_image), Range(0, Y_image)) = 255;
+    circle(mascara, center, 100, Scalar(255,255,255), 1, LINE_8);
+    imshow("mask", mascara);
+    
+    Mat res;
+    bitwise_and(image_color, mascara, res);
+    imshow("AND", res);
+
+    // imshow("Mask", mask);
+
+    /* Mat drawing1 = Mat::zeros(Size(400, 200), CV_8UC1);
+    Mat drawing2 = Mat::zeros(Size(400, 200), CV_8UC1);
+
+    drawing1(Range(0, drawing1.rows), Range(0, drawing1.cols / 2)) = 255;
+    imshow("drawing1", drawing1);
+    drawing2(Range(100, 150), Range(150, 350)) = 255;
+    imshow("drawing2", drawing2); */
+
+    // bitwise_and(image_color, mask, res);
+
+    /* for (int i = 0; i < 150; i++)
+    {
+        circle(image_color, center, i, Scalar(0, 0, 255), 2, LINE_8);
+    } */
+
+    // namedWindow("Display Color City ", WINDOW_AUTOSIZE);
+    /* imshow("Display Color City With Mask", image_color);
+    imshow("Display Color City With Mask", res); */
+    waitKey(0);
+}
+
 int main(int, char **)
 {
     Mat image_color;
@@ -150,7 +189,9 @@ int main(int, char **)
 
     // flipImage(image_color);
 
-    rotateImage(image_color);
+    // rotateImage(image_color);
+
+    makeMask(image_color);
 
     return 0;
 }
