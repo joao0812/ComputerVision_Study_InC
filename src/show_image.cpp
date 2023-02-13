@@ -139,6 +139,25 @@ void makeMask(Mat image_color)
     waitKey(0);
 }
 
+void colorScales(Mat image_color)
+{
+    Mat src_img = image_color;
+
+    Mat gray_img;
+    cvtColor(src_img, gray_img, COLOR_BGR2GRAY);
+    imshow("Gray", gray_img);
+
+    Mat hsv_img;
+    cvtColor(src_img, hsv_img, COLOR_BGR2HSV);
+    imshow("hsv", hsv_img);
+
+    Mat Lab_img;
+    cvtColor(src_img, Lab_img, COLOR_BGR2Lab);
+    imshow("Lab", Lab_img);
+
+    waitKey(0);
+}
+
 int main(int, char **)
 {
     Mat image_color;
@@ -170,7 +189,9 @@ int main(int, char **)
 
     // rotateImage(image_color);
 
-    makeMask(image_color);
+    // makeMask(image_color);
+
+    colorScales(image_color);
 
     return 0;
 }
