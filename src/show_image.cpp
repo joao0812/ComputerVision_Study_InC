@@ -158,6 +158,19 @@ void colorScales(Mat image_color)
     waitKey(0);
 }
 
+void splitColorChannels(Mat image_color)
+{
+    Mat bgr_array[3];
+    split(image_color, bgr_array);
+    
+    imshow("Origin", image_color);
+    imshow("Blue", bgr_array[0]);
+    imshow("Green", bgr_array[1]);
+    imshow("Red", bgr_array[2]);
+
+    waitKey(0);
+}
+
 int main(int, char **)
 {
     Mat image_color;
@@ -191,7 +204,9 @@ int main(int, char **)
 
     // makeMask(image_color);
 
-    colorScales(image_color);
+    // colorScales(image_color);
+
+    splitColorChannels(image_color);
 
     return 0;
 }
