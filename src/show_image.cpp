@@ -158,15 +158,49 @@ void colorScales(Mat image_color)
     waitKey(0);
 }
 
-void splitColorChannels(Mat image_color)
+void splitGrayColorChannels(Mat image_color)
 {
     Mat bgr_array[3];
     split(image_color, bgr_array);
-    
+
     imshow("Origin", image_color);
     imshow("Blue", bgr_array[0]);
     imshow("Green", bgr_array[1]);
     imshow("Red", bgr_array[2]);
+
+    waitKey(0);
+}
+
+void splitColorChannels(Mat image_color)
+{
+    Mat bgr_array[3];
+    Mat res;
+    split(image_color, bgr_array);
+
+    Mat z = Mat::zeros(Size(image_color.cols, image_color.rows), CV_8UC1);
+
+    imshow("Origin", image_color);
+
+    vector<Mat> channels_red;
+    channels_red.push_back(z);
+    channels_red.push_back(z);
+    channels_red.push_back(bgr_array[2]);
+    merge(channels_red, res);
+    imshow("Red", res);
+
+    vector<Mat> channels_green;
+    channels_green.push_back(z);
+    channels_green.push_back(bgr_array[1]);
+    channels_green.push_back(z);
+    merge(channels_green, res);
+    imshow("Green", res);
+
+    vector<Mat> channels_blue;
+    channels_blue.push_back(bgr_array[0]);
+    channels_blue.push_back(z);
+    channels_blue.push_back(z);
+    merge(channels_blue, res);
+    imshow("Blue", res);
 
     waitKey(0);
 }
@@ -205,6 +239,8 @@ int main(int, char **)
     // makeMask(image_color);
 
     // colorScales(image_color);
+
+    // splitGrayColorChannels(image_color);
 
     splitColorChannels(image_color);
 
