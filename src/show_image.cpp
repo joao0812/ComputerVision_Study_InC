@@ -1,6 +1,8 @@
 #include <iostream>
 #include <opencv2/opencv.hpp>
 #include <opencv2/highgui/highgui.hpp>
+#include <opencv2/imgproc.hpp>
+#include <vector>
 
 using namespace cv; // Faz com que n seja necessário ficar utilizando o préfixo cv:: (cv::Mat image)
 using namespace std;
@@ -129,10 +131,10 @@ void makeMask(Mat image_color)
 
     Mat mascara = Mat::zeros(image_color.size(), image_color.type());
     Mat res = Mat::zeros(image_color.size(), image_color.type());
-    
+
     // mascara(Range(0, X_image), Range(0, Y_image)) = 255;
-    circle(mascara, center, 150, Scalar(255,255,255), -1, 8, 0);
-    
+    circle(mascara, center, 150, Scalar(255, 255, 255), -1, 8, 0);
+
     image_color.copyTo(res, mascara);
 
     imshow("mask", res);
@@ -205,6 +207,32 @@ void splitColorChannels(Mat image_color)
     waitKey(0);
 }
 
+void histogramEqualization(Mat image_color)
+{
+    MatND histogram;
+    int histSize = 256;
+    const int* channels_number = {0};
+    float channel_range[] = {0.0, 256.0};
+    const float* channel_ranges = channel_range;
+    int number_bins = histSize;
+
+    calcHist(&image_color, 1, 0, Mat(), histogram, 1, &number_bins, &channel_ranges);
+
+    int hist_w = 626, hist_h = 351;
+    int bin_w = cvRound((double)hist_w / histSize);
+    Mat histImage(hist_h, hist_w, CV_8UC3, Scalar(0, 0, 0));
+    normalize(histogram, histogram, 0, histImage.rows, NORM_MINMAX, -1, Mat());
+
+    for (int i = 1; i < histSize; i++)
+    {
+        line(histImage, Point(bin_w * (i - 1), hist_h - cvRound(histogram.at<float>(i - 1))), Point(bin_w * (i), hist_h - cvRound(histogram.at<float>(i))), Scalar(255, 0, 0), 2, 8, 0);
+    }
+
+    imshow("Src Image", image_color);
+    imshow("Hist", histImage);
+    waitKey(0);
+}
+
 int main(int, char **)
 {
     Mat image_color;
@@ -242,7 +270,9 @@ int main(int, char **)
 
     // splitGrayColorChannels(image_color);
 
-    splitColorChannels(image_color);
+    // splitColorChannels(image_color);
+
+    // histogramEqualization(image_color);
 
     return 0;
 }
