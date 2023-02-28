@@ -233,6 +233,21 @@ void histogramEqualization(Mat image_color)
     waitKey(0);
 }
 
+void smoothingImage(Mat image_color)
+{
+    Mat image_blur;
+    Mat image_gaussian_blur;
+
+    blur(image_color, image_blur, Size(5,5));
+    GaussianBlur(image_color, image_gaussian_blur, Size(5,5), 5.0);
+
+    imshow("Origin image",image_color);
+    imshow("Blured image",image_blur);
+    imshow("Gaussian Blured image",image_gaussian_blur);
+    waitKey(0);
+
+}
+
 int main(int, char **)
 {
     Mat image_color;
@@ -249,30 +264,43 @@ int main(int, char **)
         printf("No image data \n");
         return -1;
     }
-
+    // 1.0
     // grayScaleImage(image_gray);
 
+    // 2.0
     // manipulandoPixelColor(image_color);
 
+    // Test
     // filtroBlurImage(image_color);
 
+    // 3.0
     // drawGeometricFormsText(image_color);
 
+    // 4.0 - 4.2
     // cropResizeImage(image_color);
 
+    // 4.3
     // flipImage(image_color);
 
+    // 4.4
     // rotateImage(image_color);
 
+    // 4.5
     // makeMask(image_color);
 
+    // 5.0
     // colorScales(image_color);
 
+    // 5.1
     // splitGrayColorChannels(image_color);
 
+    // 5.1
     // splitColorChannels(image_color);
 
+    // 6.0
     // histogramEqualization(image_color);
 
+    // 7.0
+    smoothingImage(image_color);
     return 0;
 }
