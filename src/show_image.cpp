@@ -237,13 +237,16 @@ void smoothingImage(Mat image_color)
 {
     Mat image_blur;
     Mat image_gaussian_blur;
+    Mat image_median_blur;
 
     blur(image_color, image_blur, Size(5,5));
     GaussianBlur(image_color, image_gaussian_blur, Size(5,5), 5.0);
+    medianBlur(image_color, image_median_blur, 5);
 
     imshow("Origin image",image_color);
     imshow("Blured image",image_blur);
-    imshow("Gaussian Blured image",image_gaussian_blur);
+    imshow("Gaussian Blur image",image_gaussian_blur);
+    imshow("Gaussian Median Blur image",image_median_blur);
     waitKey(0);
 
 }
