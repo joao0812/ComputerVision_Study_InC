@@ -211,9 +211,9 @@ void histogramEqualization(Mat image_color)
 {
     MatND histogram;
     int histSize = 256;
-    const int* channels_number = {0};
+    const int *channels_number = {0};
     float channel_range[] = {0.0, 256.0};
-    const float* channel_ranges = channel_range;
+    const float *channel_ranges = channel_range;
     int number_bins = histSize;
 
     calcHist(&image_color, 1, 0, Mat(), histogram, 1, &number_bins, &channel_ranges);
@@ -238,17 +238,19 @@ void smoothingImage(Mat image_color)
     Mat image_blur;
     Mat image_gaussian_blur;
     Mat image_median_blur;
+    Mat image_bilateral_blur;
 
-    blur(image_color, image_blur, Size(5,5));
-    GaussianBlur(image_color, image_gaussian_blur, Size(5,5), 5.0);
+    blur(image_color, image_blur, Size(5, 5));
+    GaussianBlur(image_color, image_gaussian_blur, Size(5, 5), 5.0);
     medianBlur(image_color, image_median_blur, 5);
+    bilateralFilter(image_color, image_bilateral_blur, 5, 180, 180);
 
-    imshow("Origin image",image_color);
+    imshow("Origin image", image_color);
     imshow("Blured image",image_blur);
     imshow("Gaussian Blur image",image_gaussian_blur);
     imshow("Gaussian Median Blur image",image_median_blur);
+    imshow("Gaussian Bilateral Blur image", image_bilateral_blur);
     waitKey(0);
-
 }
 
 int main(int, char **)
