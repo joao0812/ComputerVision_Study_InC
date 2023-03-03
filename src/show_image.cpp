@@ -246,10 +246,29 @@ void smoothingImage(Mat image_color)
     bilateralFilter(image_color, image_bilateral_blur, 5, 180, 180);
 
     imshow("Origin image", image_color);
-    imshow("Blured image",image_blur);
-    imshow("Gaussian Blur image",image_gaussian_blur);
-    imshow("Gaussian Median Blur image",image_median_blur);
+    imshow("Blured image", image_blur);
+    imshow("Gaussian Blur image", image_gaussian_blur);
+    imshow("Gaussian Median Blur image", image_median_blur);
     imshow("Gaussian Bilateral Blur image", image_bilateral_blur);
+    waitKey(0);
+}
+
+void binarizationLimiar(Mat image_gray)
+{
+    Mat image_blur, image_thres;
+
+    // cvtColor(image_color, image_gray, COLOR_BayerBG2GRAY);
+    GaussianBlur(image_gray, image_blur, Size(3, 3), 0);
+
+    /* 0: Binary
+     1: Binary Inverted
+     2: Threshold Truncated
+     3: Threshold to Zero
+     4: Threshold to Zero Inverted
+    */
+    threshold(image_gray, image_thres, 120, 255, 0);
+    imshow("Source image", image_gray);
+    imshow("Threshold image", image_thres);
     waitKey(0);
 }
 
@@ -306,6 +325,10 @@ int main(int, char **)
     // histogramEqualization(image_color);
 
     // 7.0
-    smoothingImage(image_color);
+    // smoothingImage(image_color);
+
+    // 8.0
+    binarizationLimiar(image_gray);
+
     return 0;
 }
