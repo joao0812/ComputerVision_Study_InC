@@ -272,6 +272,34 @@ void binarizationLimiar(Mat image_gray)
     waitKey(0);
 }
 
+void adaptativeThres(Mat image_color)
+{
+    Mat image_blur, image_thres_mean, image_thres_gauss, image_thres_mean_blur, image_thres_gauss_blur, image_gray;
+
+    cvtColor(image_color, image_gray, COLOR_BGR2GRAY);
+
+    GaussianBlur(image_gray, image_blur, Size(7,7), 0);
+
+    // cvtColor(image_color, image_gray, COLOR_BayerBG2GRAY);
+    // GaussianBlur(image_gray, image_blur, Size(3, 3), 0);
+
+    adaptiveThreshold(image_gray, image_thres_mean, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 21, 5);
+    adaptiveThreshold(image_gray, image_thres_gauss, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 21, 5);
+
+    adaptiveThreshold(image_blur, image_thres_mean_blur, 255, ADAPTIVE_THRESH_MEAN_C, THRESH_BINARY, 21, 5);
+    adaptiveThreshold(image_blur, image_thres_gauss_blur, 255, ADAPTIVE_THRESH_GAUSSIAN_C, THRESH_BINARY, 21, 5);
+
+    imshow("Source image", image_gray);
+    imshow("Threshold Mean image", image_thres_mean);
+    imshow("Threshold Gaussian image", image_thres_gauss);
+
+    imshow("Blur Source image", image_blur);
+    imshow("Blur Threshold Mean image", image_thres_mean_blur);
+    imshow("Blur Threshold Gaussian image", image_thres_gauss_blur);
+    // imshow("Threshold image", image_thres);
+    waitKey(0);
+}
+
 int main(int, char **)
 {
     Mat image_color;
@@ -328,7 +356,9 @@ int main(int, char **)
     // smoothingImage(image_color);
 
     // 8.0
-    binarizationLimiar(image_gray);
+    // binarizationLimiar(image_gray);
+
+    adaptativeThres(image_color);
 
     return 0;
 }
