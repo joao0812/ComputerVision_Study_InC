@@ -300,6 +300,24 @@ void adaptativeThres(Mat image_color)
     waitKey(0);
 }
 
+void thresOtsu(Mat image_color)
+{
+    Mat image_blur, image_otsu, image_otsu_blur, image_gray;
+
+    cvtColor(image_color, image_gray, COLOR_BGR2GRAY);
+
+    GaussianBlur(image_gray, image_blur, Size(7,7), 0);
+
+    threshold(image_gray, image_otsu, 120, 255, THRESH_OTSU);
+    threshold(image_blur, image_otsu_blur, 120, 255, THRESH_OTSU);
+
+    imshow("Source Image", image_gray);
+    imshow("Blur Image", image_blur);
+    imshow("OTSU Image", image_otsu);
+    imshow("Blur OTSU Image", image_otsu_blur);
+    waitKey(0);
+}
+
 int main(int, char **)
 {
     Mat image_color;
@@ -358,7 +376,11 @@ int main(int, char **)
     // 8.0
     // binarizationLimiar(image_gray);
 
-    adaptativeThres(image_color);
+    // 8.1
+    // adaptativeThres(image_color);
+
+    // 8.2
+    thresOtsu(image_color);
 
     return 0;
 }
