@@ -318,13 +318,57 @@ void thresOtsu(Mat image_color)
     waitKey(0);
 }
 
+void SodalEdgeDetection(Mat sudoku)
+{   
+    Mat sudoku_blur, grad, grad_blur;
+
+    // Remove noise by blurring with a Gaussian filter ( kernel size = 3 )
+    GaussianBlur(sudoku, sudoku_blur, Size(3,3), 1.0);
+    /* imshow("sudoku", sudoku);
+    imshow("Blur sudoku", sudoku_blur); */
+
+    Mat grad_x, grad_y, grad_x_blur, grad_y_blur;
+    Mat abs_grad_x, abs_grad_y, abs_grad_x_blur, abs_grad_y_blur;
+
+    Sobel(sudoku, grad_x, CV_16S, 1, 0, 3, 1, 0, BORDER_DEFAULT);
+    Sobel(sudoku, grad_y, CV_16S, 0, 1, 3, 1, 0, BORDER_DEFAULT);
+
+    Sobel(sudoku_blur, grad_x_blur, CV_16S, 1, 0, 5, 7, 0, BORDER_DEFAULT);
+    Sobel(sudoku_blur, grad_y_blur, CV_16S, 0, 1, 5, 7, 0, BORDER_DEFAULT);    
+
+    // converting back to CV_8U
+    convertScaleAbs(grad_x, abs_grad_x);
+    convertScaleAbs(grad_y, abs_grad_y);
+
+    convertScaleAbs(grad_x_blur, abs_grad_x_blur);
+    convertScaleAbs(grad_y_blur, abs_grad_y_blur);
+
+    addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0, grad);
+    addWeighted(grad_x_blur, 0.5, grad_y_blur, 0.5, 0, grad_blur);
+
+    imshow("ABS X Source", abs_grad_x);
+    imshow("ABS Y Source", abs_grad_y);
+
+    imshow("ABS X Blur", abs_grad_x_blur);
+    imshow("ABS Y Blur", abs_grad_y_blur);
+
+    imshow("Resulto Origin", grad);
+    imshow("Resulto Blur", grad_blur);
+
+    waitKey(0);
+
+
+}
+
 int main(int, char **)
 {
     Mat image_color;
     Mat image_gray;
+    Mat sudoku;
     // W:626 || H: 351
     image_color = imread("C:\\Users\\joaoe\\Desktop\\Cursos\\YouTube\\VisaoComputacional\\C++\\ShowImage\\assets\\city.jpg");
     image_gray = imread("C:\\Users\\joaoe\\Desktop\\Cursos\\YouTube\\VisaoComputacional\\C++\\ShowImage\\assets\\city.jpg", IMREAD_GRAYSCALE);
+    sudoku = imread("C:\\Users\\joaoe\\Desktop\\Cursos\\YouTube\\VisaoComputacional\\C++\\ShowImage\\assets\\sudoku.png", IMREAD_GRAYSCALE);
 
     cout << "Width : " << image_color.cols << endl;
     cout << "Height: " << image_color.rows << endl;
@@ -380,7 +424,10 @@ int main(int, char **)
     // adaptativeThres(image_color);
 
     // 8.2
-    thresOtsu(image_color);
+    // thresOtsu(image_color);
+
+    // 9.0 - 9.1
+    SodalEdgeDetection(sudoku);
 
     return 0;
 }
